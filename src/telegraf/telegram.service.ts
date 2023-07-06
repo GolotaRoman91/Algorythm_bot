@@ -26,9 +26,9 @@ export class TelegramService {
     );
   }
 
-  private async handleTextCommand(ctx) {
+  private handleTextCommand(ctx) {
     const text = ctx.message.text;
-    const response = await AlgService.getUnique(text);
+    const response = AlgService.getUnique(text);
     ctx.reply(
       response
         ? `A unique letter in this text: ${response}`
