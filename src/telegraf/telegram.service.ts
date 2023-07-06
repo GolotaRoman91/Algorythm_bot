@@ -19,13 +19,20 @@ export class TelegramService {
 
   private handleStartCommand(ctx) {
     ctx.reply(
-      'Hello, I am an algorithm that takes an arbitrary text as input and finds the very first character in each word of this text that does not repeat in the analyzed word! Type any text and press enter to run the algorithm and get the desired letter',
+      'Hello, I am an algorithm that takes an arbitrary text as input and finds the very first character in each word of this text that does not repeat in the analyzed word!',
+    );
+    ctx.reply(
+      'Please, type any text and press enter to run the algorithm and get the desired letter',
     );
   }
 
   private async handleTextCommand(ctx) {
     const text = ctx.message.text;
     const response = await AlgService.getUnique(text);
-    ctx.reply(`A unique letter in this text: ${response}`);
+    ctx.reply(
+      response
+        ? `A unique letter in this text: ${response}`
+        : 'Not unique character in this text',
+    );
   }
 }
